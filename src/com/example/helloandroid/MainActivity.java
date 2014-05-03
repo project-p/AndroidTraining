@@ -8,18 +8,22 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 public class MainActivity extends ActionBarActivity {
-
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 
-		if (savedInstanceState == null) {
-			getSupportFragmentManager().beginTransaction()
-					.add(R.id.container, new PlaceholderFragment()).commit();
-		}
+		// pushbuttonがクリックされると、viewtextに文字列を表示する
+		findViewById(R.id.push_button).setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				TextView viewtext = (TextView) findViewById(R.id.view_text);
+				viewtext.setText(getText(R.string.hello_android));
+			}
+		});
 	}
 
 	@Override
@@ -53,7 +57,7 @@ public class MainActivity extends ActionBarActivity {
 		@Override
 		public View onCreateView(LayoutInflater inflater, ViewGroup container,
 				Bundle savedInstanceState) {
-			View rootView = inflater.inflate(R.layout.fragment_main, container,
+			View rootView = inflater.inflate(R.layout.fragment_hello, container,
 					false);
 			return rootView;
 		}
